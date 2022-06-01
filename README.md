@@ -14,8 +14,10 @@ node scripts/sample-script.js
 npx hardhat help
 ```
 
-# env's
+# Enviroment variables
 
 STAGING_ALCHEMY_KEY=
+
 PROD_ALCHEMY_KEY=
+
 PRIVATE_KEY= (wallet private key)
