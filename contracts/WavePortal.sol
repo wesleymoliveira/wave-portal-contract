@@ -14,6 +14,8 @@ contract WavePortal {
 
     event NewWave(address indexed from, uint256 timestamp, string message);
 
+    event TotalWaves(uint256 total);
+
     struct Wave {
         address waver;
         string message;
@@ -75,6 +77,7 @@ contract WavePortal {
         }
 
         emit NewWave(msg.sender, block.timestamp, _message);
+        emit TotalWaves(totalWaves);
     }
 
     function getAllWaves() public view returns (Wave[] memory) {
