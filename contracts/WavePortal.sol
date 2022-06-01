@@ -22,6 +22,12 @@ contract WavePortal {
 
     Wave[] waves;
 
+    /*
+     * This is an address => uint mapping, meaning I can associate an address with a number!
+     * In this case, I'll be storing the address with the last time the user waved at us.
+     */
+    mapping(address => uint256) public lastWavedAt;
+
     constructor() payable {
         console.log("Yo yo, I am a contract, I am smart and I am payabl");
         /*
@@ -31,6 +37,16 @@ contract WavePortal {
     }
 
     function wave(string memory _message) public {
+        require(
+            lastWavedAt[msg.sender] + 15 minutes < block.timestamp,
+            "Wait at least 15m between each wave"
+        );
+
+        /*
+         * Update the current timestamp we have for the user
+         */
+        lastWavedAt[msg.sender] = block.timestamp;
+
         totalWaves += 1;
         console.log("%s has waved!", msg.sender);
 
